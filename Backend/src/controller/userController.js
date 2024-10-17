@@ -30,6 +30,7 @@ const registerNewUser = async(req,res) => {
             email,
             password:hashPassword
         })
+        
 
         await registerUser.save()
 
