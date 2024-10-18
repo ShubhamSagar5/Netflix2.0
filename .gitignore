@@ -1,1 +1,5 @@
 node_modules
+Backend/.env
+Backend/.gitignore
+Backend/.env
+Backend/Secret.js

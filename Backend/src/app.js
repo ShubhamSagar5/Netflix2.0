@@ -3,6 +3,7 @@ const dotenv = require('dotenv')
 const DBConnection = require('./config/DatabaseConnection')
 const cookieParser = require('cookie-parser')
 const userRouter = require('./routes/userRoute')
+const { PORT } = require('../Secret')
 
 const app = express() 
 
@@ -19,7 +20,7 @@ app.use("/api/v1",userRouter)
 DBConnection() 
 .then(()=>{
     console.log("Database Connected Successfully")
-    app.listen(process.env.PORT,() => {
+    app.listen(PORT,() => {
         console.log("Server is successfully listening on port " + process.env.PORT)
     })
 })
