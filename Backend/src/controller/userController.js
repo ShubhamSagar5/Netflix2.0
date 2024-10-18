@@ -37,7 +37,7 @@ const registerNewUser = async(req,res) => {
 
         return res.status(200).json({
             success:true,
-            message:'you are register successfully',
+            message:'Account Created Successfully',
             data:registerNewUser
         })
 

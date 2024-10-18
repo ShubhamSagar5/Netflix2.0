@@ -4,6 +4,7 @@ const DBConnection = require('./config/DatabaseConnection')
 const cookieParser = require('cookie-parser')
 const userRouter = require('./routes/userRoute')
 const { PORT } = require('../Secret')
+const cors = require('cors')
 
 const app = express() 
 
@@ -11,6 +12,10 @@ const app = express()
 dotenv.config({
     path:"./.env"
 })
+
+app.use(cors({
+    origin:"http://localhost:3000" 
+}))
 
 app.use(express.json())
 app.use(cookieParser()) 
@@ -21,7 +26,7 @@ DBConnection()
 .then(()=>{
     console.log("Database Connected Successfully")
     app.listen(PORT,() => {
-        console.log("Server is successfully listening on port " + process.env.PORT)
+        console.log("Server is successfully listening on port " + PORT)
     })
 })
 .catch((err)=>{
