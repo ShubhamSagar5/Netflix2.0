@@ -4,10 +4,15 @@ import axios from 'axios'
 import toast from 'react-hot-toast'
 import { Loader } from '../utils/Loader'
 import { useNavigate } from 'react-router-dom'
+import {useDispatch} from 'react-redux'
+import { setUser } from '../redux/UserSlice'
 
 const Login = () => {
   
   const navigate = useNavigate()
+
+  const dispatch = useDispatch()
+
   const [isLogin,setIsLogin] = useState(false)
 
   const [fullName , setFullName] = useState('')
@@ -38,10 +43,19 @@ const handelSubmit = async() => {
 
   if(isLogin){
     try {
-      const response = await axios.post("http://localhost:4000/api/v1/login",loginData) 
-      if(response.data.success){
-        toast.success(response.data.message)
+      const response = await axios.post("http://localhost:4000/api/v1/login",loginData,{
+        headers:{
+        'Content-Type':'application/json',
+      },
+      withCredentials:true
+      }) 
+
+      console.log(response)
+
+      if(response?.data?.success){
+        toast.success(response?.data?.message)
       }
+      dispatch(setUser(response.data.user))
       setFullName("")
       setEmail("")
       setPassword("")

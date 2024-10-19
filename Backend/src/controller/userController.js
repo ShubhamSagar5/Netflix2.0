@@ -84,9 +84,10 @@ const logIn = async(req,res) => {
 
         const getJwt = await jwt.sign(payloadData,JET_SECRET,{expiresIn:"1d"}) 
 
-        return res.status(200).cookie("token",getJwt).json({
+        return res.status(200).cookie("token",getJwt,{httpOnly:true}).json({
             success:true,
-            message:`Welcome back ${user.fullName}`
+            message:`Welcome back ${user.fullName}`,
+            user
         }) 
 
     } catch (error) {

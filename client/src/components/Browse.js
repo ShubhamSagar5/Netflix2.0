@@ -1,11 +1,26 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Header from './Header'
+import {useSelector} from 'react-redux'
+import {useNavigate} from 'react-router-dom'
 
 const Browse = () => {
+ 
+  const user  = useSelector((Store) => Store.app.user)
+
+  const navigate = useNavigate()
+
+  useEffect(()=>{
+    if(!user){
+      navigate("/")
+      console.log("cak")
+    }
+  })
+
+ 
   return (
     <div>
     <Header/>
-
+dddd
     </div>
   )
 }
