@@ -17,7 +17,7 @@ const Header = () => {
     const handleLogOut = async() => {
         try {
             
-            const response = await axios.post("http://localhost:4000/api/v1/logout") 
+            const response = await axios.get("http://localhost:4000/api/v1/logout") 
             if(response.data.success){
                 toast.success(response.data.message)
                 dispatch(setUser(null))

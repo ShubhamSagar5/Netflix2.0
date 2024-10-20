@@ -12,7 +12,6 @@ const Browse = () => {
   useEffect(()=>{
     if(!user){
       navigate("/")
-      console.log("cak")
     }
   })
 

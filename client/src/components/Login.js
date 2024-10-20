@@ -4,8 +4,8 @@ import axios from 'axios'
 import toast from 'react-hot-toast'
 import { Loader } from '../utils/Loader'
 import { useNavigate } from 'react-router-dom'
-import {useDispatch} from 'react-redux'
-import { setUser } from '../redux/UserSlice'
+import {useDispatch, useSelector} from 'react-redux'
+import { setLoading, setUser } from '../redux/UserSlice'
 
 const Login = () => {
   
@@ -13,13 +13,14 @@ const Login = () => {
 
   const dispatch = useDispatch()
 
+  const isLoading = useSelector((store)=>store.app.loading)
+
   const [isLogin,setIsLogin] = useState(false)
 
   const [fullName , setFullName] = useState('')
   const [email,setEmail] = useState('')
   const [password,setPassword] = useState('')
 
-  const [loading,setLoading] = useState(false)
 
 
 const handleIsLogin = () => {
@@ -28,7 +29,7 @@ const handleIsLogin = () => {
 
 const handelSubmit = async() => {
   
-  setLoading(true)
+  dispatch(setLoading(true))
 
   const loginData = {
     email,
@@ -50,8 +51,6 @@ const handelSubmit = async() => {
       withCredentials:true
       }) 
 
-      console.log(response)
-
       if(response?.data?.success){
         toast.success(response?.data?.message)
       }
@@ -59,13 +58,14 @@ const handelSubmit = async() => {
       setFullName("")
       setEmail("")
       setPassword("")
-      setLoading(false)
       navigate("/browse")
 
     } catch (error) {
       toast.error(error.response.data.message)
       setLoading(false)
 
+    }finally{
+      dispatch(setLoading(false))
     }
   }else{
     try {
@@ -82,8 +82,9 @@ const handelSubmit = async() => {
       
     } catch (error) {
       toast.error(error.response.data.message)
-      setLoading(false)
 
+    }finally{
+      dispatch(setLoading(false))
     }
   }
 }
@@ -101,7 +102,7 @@ const handelSubmit = async() => {
             <input type="text" className='bg-black p-2 border border-white rounded-sm'  placeholder='Enter Your Password' value={password} onChange={(e)=>setPassword(e.target.value)}/>
 
 
-                <button onClick={handelSubmit} className='bg-red-600 mt-4  text-center rounded-sm p-2'>{loading ? <p className='text-center ml-32'> <Loader/> </p> : <p>{isLogin ? "Login" : "Signup"}</p>}</button>
+                <button onClick={handelSubmit} className='bg-red-600 mt-4  text-center rounded-sm p-2'>{isLoading ? <p className='text-center ml-32'> <Loader/> </p> : <p>{isLogin ? "Login" : "Signup"}</p>}</button>
                 <p>{isLogin ? "You Do Not Have an Account ?" : "New To Netflix ?"}  <span onClick={handleIsLogin} className='cursor-pointer text-blue-500 underline ml-3'>{isLogin ? "SignUp" : "Login"}</span></p>
            
 
