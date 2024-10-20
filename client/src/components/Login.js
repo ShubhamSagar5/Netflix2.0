@@ -90,10 +90,15 @@ const handelSubmit = async() => {
 }
 
   return (
- <div>          
-    <img className='absolute -z-10 h-[100vh] w-[100vw]'  src="https://assets.nflxext.com/ffe/siteui/vlv3/a09bb938-2d90-42ae-986e-5a3e4abf9e77/8eb1e781-3494-4aa4-9405-268ca6473e4c/IN-en-20231113-popsignuptwoweeks-perspective_alpha_website_small.jpg" alt="" />
-    <Header/>
-      <div className='flex justify-center mt-24 '>
+    <>
+      <Header/>    
+      <img className='h-[100vh] w-[100vw] '  src="https://assets.nflxext.com/ffe/siteui/vlv3/a09bb938-2d90-42ae-986e-5a3e4abf9e77/8eb1e781-3494-4aa4-9405-268ca6473e4c/IN-en-20231113-popsignuptwoweeks-perspective_alpha_website_small.jpg" alt="" />
+  
+      <div className='-mt-[33.5rem]'>  
+  
+        
+   
+      <div className='flex justify-center  '>
 
           <div className='flex flex-col  w-3/12 text-center bg-black p-8 opacity-90 rounded-md text-white gap-6'>
               <p className='text-2xl font-semibold'>{isLogin ? "Login" : "Signup"} </p>
@@ -109,7 +114,9 @@ const handelSubmit = async() => {
           </div>
       </div>    
 
-    </div>
+    </div> 
+    </>
+
   )
 }
 
