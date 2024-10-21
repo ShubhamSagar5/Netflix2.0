@@ -4,12 +4,19 @@ import {useSelector} from 'react-redux'
 import {useNavigate} from 'react-router-dom'
 import MainContainer from './MainContainer'
 import MovieContainer from './MovieContainer'
+import { useDispatch } from 'react-redux'
+import { useGetNowPlayingMovies } from '../hook/useGetMovieData'
+
 
 const Browse = () => {
  
   const user  = useSelector((Store) => Store.app.user)
 
+  const dispatch  = useDispatch()
+
   const navigate = useNavigate()
+
+  useGetNowPlayingMovies()
 
   useEffect(()=>{
     if(!user){
