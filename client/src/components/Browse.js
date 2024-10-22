@@ -5,7 +5,7 @@ import {useNavigate} from 'react-router-dom'
 import MainContainer from './MainContainer'
 import MovieContainer from './MovieContainer'
 import { useDispatch } from 'react-redux'
-import { useGetNowPlayingMovies } from '../hook/useGetMovieData'
+import { useGetNowPlayingMovies, useGetPopularMovie, useTopRatedMovie, useUpcomingMovie } from '../hook/useGetMovieData'
 
 
 const Browse = () => {
@@ -17,6 +17,9 @@ const Browse = () => {
   const navigate = useNavigate()
 
   useGetNowPlayingMovies()
+  useGetPopularMovie()
+  useTopRatedMovie()
+  useUpcomingMovie()
 
   useEffect(()=>{
     if(!user){
