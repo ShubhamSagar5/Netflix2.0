@@ -2,18 +2,23 @@ import React from 'react'
 import { useGetMovieTrailer } from '../hook/useGetMovieData'
 import { useSelector } from 'react-redux'
 
-const VideoBackground = ({videoId}) => {
+const VideoBackground = ({videoId,bool=false}) => {
  
  
   useGetMovieTrailer(videoId)
 
   const TrailerData = useSelector((store)=>store?.movie?.trailerMovie)
- 
+ console.log(TrailerData)
   return (
-    <div className='w-[100vw] -z-10'>
-
-<iframe className='w-[100vw] h-[100vh]'src={`https://www.youtube.com/embed/${TrailerData?.key}?si=wHOhJc6sVXVC2ecD&autoplay=1&mute=1`} allowFullScreen></iframe>
-</div>
+    <div className='w-[100vw] '>
+            <iframe
+                className="w-[100vw] aspect-video" 
+                src={`https://www.youtube.com/embed/${TrailerData?.key}?si=HorxQfzFY2_TAO1W&autoplay=1&mute=1`}
+                title="YouTube video player"
+                frameBorder="0"
+                allowFullScreen>
+            </iframe>
+        </div>
   )
 }
 

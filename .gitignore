@@ -4,3 +4,4 @@ Backend/.gitignore
 Backend/.env
 Backend/Secret.js
 
+client/src/constants/constant.js

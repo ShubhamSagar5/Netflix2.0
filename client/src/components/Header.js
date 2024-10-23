@@ -6,14 +6,17 @@ import { IoIosArrowDropdown } from "react-icons/io";
 import { useNavigate } from 'react-router-dom';
 import {useSelector,useDispatch} from 'react-redux'
 import { setUser } from '../redux/UserSlice';
+import { toggelSearchMovie } from '../redux/MovieSlice';
 
 
-const Header = () => {
+const Header = ({handleSearchMovie,toggle}) => {
   
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const user = useSelector((Store)=>Store.app.user)
   
+    
+
     const handleLogOut = async() => {
         try {
             
@@ -30,6 +33,7 @@ const Header = () => {
     }
 
   
+  
     return (
     <div className='bg-gradient-to-b from-black flex justify-between items-center w-full absolute z-30'>
         <div>
@@ -42,7 +46,7 @@ const Header = () => {
                 <p className='font-semibold '>{user?.fullName}</p>
             </div>
             <div className='gap-6 flex'>
-                <button className='px-4 py-1 bg-red-700 text-white rounded-sm'>Search</button>
+                <button className='px-4 py-1 bg-red-700 text-white rounded-sm' onClick={handleSearchMovie}>{toggle ? "Home" : "Search"}</button>
                 <button className='px-4 mr-2 py-1 bg-red-700 text-white rounded-sm' onClick={handleLogOut} >Logout</button>
             </div>
         </div>

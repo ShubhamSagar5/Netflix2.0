@@ -9,7 +9,7 @@ const MovieContainer = () => {
   
   
   return (
-    <div className='bg-black p-2 text-white -mt-32'>
+    <div className='bg-black p-2 text-white -mt-48'>
         <MovieList title="Now Playing Movies" videoData ={movie.nowPlayingMovies}/>
         <MovieList title="Popular Movie" videoData ={movie.popularMovie}/>
         <MovieList title="Top Rated movies" videoData ={movie.topRatedMovie}/>

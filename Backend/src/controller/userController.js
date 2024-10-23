@@ -65,7 +65,8 @@ const logIn = async(req,res) => {
 
         if(!user){
             return res.status(401).json({
-                success:"Invalid email and password and user not found"
+                sucess:false,
+                message:"Invalid email and password and user not found"
             })
         }
 
