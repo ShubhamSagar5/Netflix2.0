@@ -13,9 +13,11 @@ const Header = ({handleSearchMovie,toggle}) => {
   
     const navigate = useNavigate()
     const dispatch = useDispatch()
-    const user = useSelector((Store)=>Store.app.user)
+    // const user = useSelector((Store)=>Store.app.user)
   
-    
+    const user = localStorage.getItem('userId')
+
+    console.log(user)
 
     const handleLogOut = async() => {
         try {
@@ -24,7 +26,8 @@ const Header = ({handleSearchMovie,toggle}) => {
             if(response.data.success){
                 toast.success(response.data.message)
                 dispatch(setUser(null))
-                navigate("/")
+                navigate("/") 
+                localStorage.removeItem('userId')
             }
 
         } catch (error) {
@@ -43,7 +46,7 @@ const Header = ({handleSearchMovie,toggle}) => {
             user && <div className='flex items-center gap-12'>
             <div className='flex items-center gap-2 text-white bg-gray-800 px-3 py-1 rounded-sm'>
                 <IoIosArrowDropdown size={25}/> 
-                <p className='font-semibold '>{user?.fullName}</p>
+                <p className='font-semibold '>{user}</p>
             </div>
             <div className='gap-6 flex'>
                 <button className='px-4 py-1 bg-red-700 text-white rounded-sm' onClick={handleSearchMovie}>{toggle ? "Home" : "Search"}</button>

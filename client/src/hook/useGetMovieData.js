@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { getMoviesOptions } from '../constants/constant'
 import { useDispatch } from 'react-redux'
-import { addNowPlayingMovies, addPopularmovie, addTopRatedMovie, addTrailerMovie, addUpComingMovie } from '../redux/MovieSlice'
+import { addNowPlayingMovies, addPopularmovie, addTopRatedMovie, addTrailerMovie, addUpComingMovie, setDialogBoxVideo } from '../redux/MovieSlice'
 import { useEffect } from 'react'
 
 export const useGetNowPlayingMovies = async () => {
@@ -86,9 +86,8 @@ export const useUpcomingMovie = async () => {
     
 }
 
-export const useGetMovieTrailer = async (movieId) => {
+export const useGetMovieTrailer = async (movieId,bool) => {
     const dispatch = useDispatch()
-
 
     const getMovieTrailer = async() => {
 try {
@@ -100,9 +99,15 @@ try {
         const TrailerData = data.filter((data) => {
             return data?.type === "Trailer"
         })
+if(!bool){
+    dispatch(addTrailerMovie(TrailerData?.length > 0 ? TrailerData[0] : res.data.results[0])) 
+}
+       
 
-
-        dispatch(addTrailerMovie(TrailerData?.length > 0 ? TrailerData[0] : res.data.results[0]))
+if(bool){
+    dispatch(setDialogBoxVideo(TrailerData?.length > 0 ? TrailerData[0] : res.data.results[0]))
+}
+        
 
 
     } catch (error) {
@@ -112,6 +117,6 @@ try {
 
         useEffect(()=>{
             getMovieTrailer()
-    },[])
+    },[movieId])
 
 }

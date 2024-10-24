@@ -8,7 +8,7 @@ import { useDispatch } from 'react-redux'
 import { useGetNowPlayingMovies, useGetPopularMovie, useTopRatedMovie, useUpcomingMovie } from '../hook/useGetMovieData'
 import SearchMovie from './SearchMovie'
 import { toggelSearchMovie } from '../redux/MovieSlice'
-
+import Cookies  from 'js-cookie'
 
 const Browse = () => {
  
@@ -26,18 +26,22 @@ const Browse = () => {
   useUpcomingMovie() 
 
   const handleSearchMovie = () => {
-    console.log("clicked")
     setToggle(!toggle) 
     dispatch(toggelSearchMovie())
 }
 
 
-  useEffect(()=>{
-    if(!user){
-      navigate("/")
-    }
-  })
 
+
+const checkUser  = () => {
+   if(!localStorage.getItem('userId')){
+  navigate("/")
+}  
+}
+
+useEffect(()=> {
+  checkUser()
+},[])
  
   return (
     <div>

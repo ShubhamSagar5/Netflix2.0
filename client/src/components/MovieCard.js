@@ -1,9 +1,25 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
+import { setDialogVideoId, toggleDialogBox } from '../redux/MovieSlice'
 
-const MovieCard = ({poster}) => {
+const MovieCard = ({poster,videoId}) => {
+  
+  const dispatch = useDispatch() 
+
+  if(!poster){
+    return null
+  }
+
+  const handleDialogVideo = () => {
+    dispatch(setDialogVideoId(videoId))
+    dispatch(toggleDialogBox(true))
+    console.log(videoId)
+
+  }
+
   return (
     <div className='w-40'>
-<img className='' src={`https://image.tmdb.org/t/p/original${poster}`} alt="moviePoster" />
+<img className='' src={`https://image.tmdb.org/t/p/original${poster}`} alt="moviePoster" onClick={handleDialogVideo} />
     </div>
   )
 }

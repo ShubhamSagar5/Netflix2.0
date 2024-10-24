@@ -10,7 +10,10 @@ const movieSlice = createSlice({
         topRatedMovie:null,
         upcomingMovie:null,
         trailerMovie:null,
-        searchMovieToggle:false
+        searchMovieToggle:false,
+        dialogBox:false,
+        dialogVideoId:null,
+        dialogBoxVideo:null
     },
     reducers:{
         addNowPlayingMovies:(state,action) => {
@@ -30,10 +33,20 @@ const movieSlice = createSlice({
         },
         toggelSearchMovie:(state) => {
             state.searchMovieToggle = !state.searchMovieToggle
+        },
+        toggleDialogBox:(state,action) => {
+            state.dialogBox = action.payload
+        },
+        setDialogVideoId:(state,action) => {
+            state.dialogVideoId = action.payload
+        },
+        setDialogBoxVideo:(state,action) => {
+            state.dialogBoxVideo = action.payload
         }
+        
 
     }
 })
 
-export const {addNowPlayingMovies,addPopularmovie,addTopRatedMovie,addUpComingMovie,addTrailerMovie,toggelSearchMovie} = movieSlice.actions 
+export const {addNowPlayingMovies,addPopularmovie,addTopRatedMovie,addUpComingMovie,addTrailerMovie,toggelSearchMovie,toggleDialogBox,setDialogVideoId,setDialogBoxVideo} = movieSlice.actions 
 export default movieSlice.reducer

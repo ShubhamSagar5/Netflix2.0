@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Header from './Header'
 import axios from 'axios'
 import toast from 'react-hot-toast'
@@ -6,6 +6,7 @@ import { Loader } from '../utils/Loader'
 import { useNavigate } from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
 import { setLoading, setUser } from '../redux/UserSlice'
+import Cookies from 'js-cookie'
 
 const Login = () => {
   
@@ -53,12 +54,18 @@ const handelSubmit = async() => {
 
       if(response?.data?.success){
         toast.success(response?.data?.message)
-      }
+     
+    }
+
+      
+
       dispatch(setUser(response.data.user))
       setFullName("")
       setEmail("")
       setPassword("")
       navigate("/browse")
+
+      localStorage.setItem('userId',response?.data?.user?.fullName)
 
     } catch (error) {
       toast.error(error.response.data.message)
@@ -81,7 +88,7 @@ const handelSubmit = async() => {
 
       
     } catch (error) {
-      clg
+      
       toast.error(error.response.data.message)
 
     }finally{
@@ -89,6 +96,12 @@ const handelSubmit = async() => {
     }
   }
 }
+
+useEffect(()=>{
+  if(localStorage.getItem('userId')){
+    navigate("/browse")
+  }
+},[])
 
   return (
     <>
