@@ -22,6 +22,9 @@ app.use(express.json())
 app.use(cookieParser()) 
 
 app.use("/api/v1",userRouter)
+app.use("/",(req,res)=>{
+    res.send("Hello from backend")    
+})
 
 DBConnection() 
 .then(()=>{
