@@ -1,7 +1,7 @@
 const User = require("../models/userModel")
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
-const { JET_SECRET } = require("../../Secret")
+const {JET_SECRET } = require("../../Secret")
 
 const registerNewUser = async(req,res) => {
     try {
@@ -50,10 +50,11 @@ const registerNewUser = async(req,res) => {
 } 
 
 const logIn = async(req,res) => {
+    
     try {
         
         const {email,password} = req.body 
-
+        console.log(email,password)
         if(!email || !password){
             return res.status(401).json({
                 success:false,
@@ -83,7 +84,8 @@ const logIn = async(req,res) => {
             id:user._id
         }
 
-        const getJwt = await jwt.sign(payloadData,JET_SECRET,{expiresIn:"1d"}) 
+        const getJwt = await jwt.sign(payloadData,process.env.JET_SECRET,{expiresIn:"1d"}) 
+      
 
         return res.status(200).cookie("token",getJwt,{httpOnly:true}).json({
             success:true,

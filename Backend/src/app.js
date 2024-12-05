@@ -14,7 +14,7 @@ dotenv.config({
 })
 
 app.use(cors({
-    origin:"http://localhost:3000",
+    origin:"*",
     credentials:true
 }))
 
@@ -27,7 +27,7 @@ DBConnection()
 .then(()=>{
     console.log("Database Connected Successfully")
     app.listen(PORT,() => {
-        console.log("Server is successfully listening on port " + PORT)
+        console.log("Server is successfully listening on port " + process.env.PORT)
     })
 })
 .catch((err)=>{

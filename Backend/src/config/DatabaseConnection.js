@@ -4,7 +4,7 @@ const { MONGO_URL } = require('../../Secret')
 
 const DBConnection = async() => {
 
-    await mongoose.connect(MONGO_URL)
+    await mongoose.connect(process.env.MONGO_URL)
 
 }
 
