@@ -45,7 +45,7 @@ const handelSubmit = async() => {
 
   if(isLogin){
     try {
-      const response = await axios.post("http://localhost:4000/api/v1/login",loginData,{
+      const response = await axios.post("https://netflix2-0-ftcn.onrender.com/api/v1/login",loginData,{
         headers:{
         'Content-Type':'application/json',
       },
@@ -76,7 +76,7 @@ const handelSubmit = async() => {
     }
   }else{
     try {
-      const response = await axios.post("http://localhost:4000/api/v1/register",signupData) 
+      const response = await axios.post("https://netflix2-0-ftcn.onrender.com/api/v1/register",signupData) 
       if(response.data.success){
         toast.success(response.data.message)
       } 
