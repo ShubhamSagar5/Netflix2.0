@@ -87,6 +87,7 @@ export const useUpcomingMovie = async () => {
 }
 
 export const useGetMovieTrailer = async (movieId,bool) => {
+    console.log(movieId)
     const dispatch = useDispatch()
 
     const getMovieTrailer = async() => {
@@ -95,7 +96,7 @@ try {
         const res = await axios.get(`https://api.themoviedb.org/3/movie/${movieId}/videos`, getMoviesOptions)
 
         const data = res?.data?.results
-
+        console.log(data)
         const TrailerData = data.filter((data) => {
             return data?.type === "Trailer"
         })

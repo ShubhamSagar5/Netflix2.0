@@ -17,7 +17,7 @@ const Header = ({handleSearchMovie,toggle}) => {
   
     const user = localStorage.getItem('userId')
 
-    console.log(user)
+   
 
     const handleLogOut = async() => {
         try {
