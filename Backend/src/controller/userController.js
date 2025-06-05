@@ -1,7 +1,6 @@
 const User = require("../models/userModel")
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
-const {JET_SECRET } = require("../../Secret")
 
 const registerNewUser = async(req,res) => {
     try {
@@ -67,7 +66,7 @@ const logIn = async(req,res) => {
         if(!user){
             return res.status(401).json({
                 sucess:false,
-                message:"Invalid email and password and user not found"
+                message:"Invalid email and password "
             })
         }
 
@@ -76,7 +75,7 @@ const logIn = async(req,res) => {
         if(!isPasswordMatch){
             return res.status(401).json({
                 success:false,
-                message:"Inavlid email and password and password not match"
+                message:"Inavlid email and password "
             })
         }
 

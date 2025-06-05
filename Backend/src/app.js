@@ -3,7 +3,6 @@ const dotenv = require('dotenv')
 const DBConnection = require('./config/DatabaseConnection')
 const cookieParser = require('cookie-parser')
 const userRouter = require('./routes/userRoute')
-const { PORT } = require('../Secret')
 const cors = require('cors')
 
 const app = express() 
@@ -14,8 +13,8 @@ dotenv.config({
 })
 
 app.use(cors({
-    origin:"*",
-    credentials:true
+    origin:"http://localhost:3000",
+    credentials:true 
 }))
 
 app.use(express.json())

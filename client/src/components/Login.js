@@ -45,6 +45,10 @@ const handelSubmit = async() => {
 
   if(isLogin){
     try {
+
+      if(!email && !password){
+        toast.error("Email and Password Required")
+      }
       const response = await axios.post("http://localhost:4000/api/v1/login",loginData,{
         headers:{
         'Content-Type':'application/json',
@@ -59,7 +63,7 @@ const handelSubmit = async() => {
 
       
 
-      dispatch(setUser(response.data.user))
+      dispatch(setUser(response?.data?.user))
       setFullName("")
       setEmail("")
       setPassword("")
@@ -68,6 +72,7 @@ const handelSubmit = async() => {
       localStorage.setItem('userId',response?.data?.user?.fullName)
 
     } catch (error) {
+      console.log(error)
       toast.error(error?.response?.data?.message)
       setLoading(false)
 
