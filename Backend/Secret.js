@@ -1,9 +1,9 @@
-const PORT = 4000 
-const MONGO_URL = "mongodb+srv://s60889355:6kO3skMaRco7DaZs@cluster0.zwttd.mongodb.net/Netflix"
-const JET_SECRET = "NeTFLix2.0" 
+// const PORT = 4000 
+// const MONGO_URL = "mongodb+srv://s655:b0N2@cluster0.zwttd.ngodb.net/Netflix"
+// const JET_SECRET = "NeTFLix2.0" 
 
-module.exports = {
-    PORT,
-    MONGO_URL,
-    JET_SECRET
-}
+// module.exports = {
+//     PORT,
+//     MONGO_URL,
+//     JET_SECRET
+// }

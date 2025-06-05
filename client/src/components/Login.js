@@ -45,7 +45,7 @@ const handelSubmit = async() => {
 
   if(isLogin){
     try {
-      const response = await axios.post("https://netflix2-0-ftcn.onrender.com/api/v1/login",loginData,{
+      const response = await axios.post("http://localhost:4000/api/v1/login",loginData,{
         headers:{
         'Content-Type':'application/json',
       },
@@ -68,7 +68,7 @@ const handelSubmit = async() => {
       localStorage.setItem('userId',response?.data?.user?.fullName)
 
     } catch (error) {
-      toast.error(error.response.data.message)
+      toast.error(error?.response?.data?.message)
       setLoading(false)
 
     }finally{
@@ -76,9 +76,9 @@ const handelSubmit = async() => {
     }
   }else{
     try {
-      const response = await axios.post("https://netflix2-0-ftcn.onrender.com/api/v1/register",signupData) 
+      const response = await axios.post("http://localhost:4000/api/v1/register",signupData) 
       if(response.data.success){
-        toast.success(response.data.message)
+        toast.success(response?.data?.message)
       } 
       setFullName("")
       setEmail("")
@@ -89,7 +89,7 @@ const handelSubmit = async() => {
       
     } catch (error) {
       
-      toast.error(error.response.data.message)
+      toast.error(error?.response?.data?.message)
 
     }finally{
       dispatch(setLoading(false))
@@ -108,13 +108,13 @@ useEffect(()=>{
       <Header/>    
       <img className='h-[100vh] w-[100vw] '  src="https://assets.nflxext.com/ffe/siteui/vlv3/a09bb938-2d90-42ae-986e-5a3e4abf9e77/8eb1e781-3494-4aa4-9405-268ca6473e4c/IN-en-20231113-popsignuptwoweeks-perspective_alpha_website_small.jpg" alt="" />
   
-      <div className='-mt-[33.5rem]'>  
+      <div className='md:-mt-[33.5rem] -mt-[45.5rem]'>  
   
         
    
       <div className='flex justify-center  '>
 
-          <div className='flex flex-col  w-3/12 text-center bg-black p-8 opacity-90 rounded-md text-white gap-6'>
+          <div className='flex flex-col text-xl md:text-base  md:w-3/12 text-center bg-black p-8 opacity-90 rounded-md text-white gap-6'>
               <p className='text-2xl font-semibold'>{isLogin ? "Login" : "Signup"} </p>
            {!isLogin  && <input type="text" className='bg-black p-2 border border-white rounded-sm' placeholder='Enter Full Name' value={fullName} onChange={(e)=>setFullName(e.target.value)} />} 
             <input type="text" className='bg-black p-2 border border-white rounded-sm' placeholder='Enter Email Id' value={email} onChange={(e)=>setEmail(e.target.value)}/>

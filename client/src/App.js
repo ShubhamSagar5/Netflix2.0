@@ -6,7 +6,7 @@ import VideoDialog from './utils/VideoDialog';
 
 function App() {
   return (
-    <div className=''>
+    <div className='bg-black'>
     <Toaster/>
       <Body/>
       <VideoDialog/>

@@ -20,7 +20,7 @@ app.use(cors({
 
 app.use(express.json())
 app.use(cookieParser()) 
-
+ 
 app.use("/api/v1",userRouter)
 app.use("/",(req,res)=>{
     res.send("Hello from backend")    
@@ -29,7 +29,7 @@ app.use("/",(req,res)=>{
 DBConnection() 
 .then(()=>{
     console.log("Database Connected Successfully")
-    app.listen(PORT,() => {
+    app.listen(process.env.PORT,() => {
         console.log("Server is successfully listening on port " + process.env.PORT)
     })
 })
