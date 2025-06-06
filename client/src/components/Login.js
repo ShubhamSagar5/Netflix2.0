@@ -49,7 +49,7 @@ const handelSubmit = async() => {
       if(!email && !password){
         toast.error("Email and Password Required")
       }
-      const response = await axios.post("http://localhost:4000/api/v1/login",loginData,{
+      const response = await axios.post("/view/api/v1/login",loginData,{
         headers:{
         'Content-Type':'application/json',
       },
@@ -81,7 +81,7 @@ const handelSubmit = async() => {
     }
   }else{
     try {
-      const response = await axios.post("http://localhost:4000/api/v1/register",signupData) 
+      const response = await axios.post("/view/api/v1/register",signupData) 
       if(response.data.success){
         toast.success(response?.data?.message)
       } 
